@@ -72,19 +72,70 @@ function renderProducts(list = products) {
         <p class="text-gray-500 mb-4">
           ${product.weight}
         </p>
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center mb-4">
           <span class="text-2xl font-bold text-[#8b5a2b]">
             ${product.price} грн
           </span>
+        </div>
+        <div class="flex gap-2 items-center">
+          <div class="flex items-center border border-[#8b5a2b] rounded-lg">
+            <button
+              onclick="decrementQty(${product.id})"
+              class="px-3 py-1 text-[#8b5a2b] font-bold hover:bg-[#f8f5f2]">
+              −
+            </button>
+            <span id="qty-${product.id}" class="px-3 py-1 min-w-[40px] text-center">1</span>
+            <button
+              onclick="incrementQty(${product.id})"
+              class="px-3 py-1 text-[#8b5a2b] font-bold hover:bg-[#f8f5f2]">
+              +
+            </button>
+          </div>
           <button
-            onclick="addToCart(${product.id})"
-            class="bg-[#8b5a2b] text-white px-4 py-2 rounded-xl">
+            onclick="addToCartWithQty(${product.id})"
+            class="flex-1 bg-[#8b5a2b] text-white px-4 py-2 rounded-xl hover:bg-[#6d4410]">
             В кошик
           </button>
         </div>
       </div>
     </div>
   `).join("");
+}
+
+let productQuantities = {};
+
+function incrementQty(id) {
+  if (!productQuantities[id]) productQuantities[id] = 1;
+  productQuantities[id]++;
+  document.getElementById(`qty-${id}`).textContent = productQuantities[id];
+}
+
+function decrementQty(id) {
+  if (!productQuantities[id]) productQuantities[id] = 1;
+  if (productQuantities[id] > 1) {
+    productQuantities[id]--;
+    document.getElementById(`qty-${id}`).textContent = productQuantities[id];
+  }
+}
+
+function addToCartWithQty(id) {
+  const quantity = productQuantities[id] || 1;
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(item => item.id === id);
+
+  if (existing) {
+    existing.quantity += quantity;
+  } else {
+    cart.push({
+      ...product,
+      quantity: quantity
+    });
+  }
+
+  saveCart();
+  showToast(product.name, quantity);
+  productQuantities[id] = 1;
+  document.getElementById(`qty-${id}`).textContent = 1;
 }
 
 function addToCart(id) {
@@ -104,11 +155,11 @@ function addToCart(id) {
   showToast(product.name);
 }
 
-function showToast(name) {
+function showToast(name, qty = 1) {
   const toast = document.createElement("div");
   toast.className =
     "fixed bottom-6 right-6 bg-[#8b5a2b] text-white px-6 py-4 rounded-2xl shadow-xl z-50";
-  toast.textContent = `${name} додано в кошик`;
+  toast.textContent = `${name} (${qty} шт.) додано в кошик`;
   document.body.appendChild(toast);
 
   setTimeout(() => {
@@ -139,7 +190,7 @@ function renderCart() {
     total += itemTotal;
 
     return `
-      <div class="flex gap-4 border-b pb-4">
+      <div class="flex gap-4 border-b pb-4 mb-4">
         <img
           src="${item.img}"
           class="w-20 h-20 object-cover rounded-xl">
@@ -147,16 +198,29 @@ function renderCart() {
           <h4 class="font-semibold">
             ${item.name}
           </h4>
-          <p>
-            ${item.quantity} × ${item.price} грн
+          <p class="text-gray-600 mb-2">
+            ${item.weight}
           </p>
-          <p class="font-bold">
-            ${itemTotal} грн
+          <div class="flex gap-2 items-center mb-2">
+            <button
+              onclick="decrementCartItem(${index})"
+              class="px-2 py-1 border border-[#8b5a2b] text-[#8b5a2b] rounded hover:bg-[#f8f5f2]">
+              −
+            </button>
+            <span class="px-3 text-center min-w-[30px]">${item.quantity}</span>
+            <button
+              onclick="incrementCartItem(${index})"
+              class="px-2 py-1 border border-[#8b5a2b] text-[#8b5a2b] rounded hover:bg-[#f8f5f2]">
+              +
+            </button>
+          </div>
+          <p>
+            ${item.price} грн × ${item.quantity} = <span class="font-bold">${itemTotal} грн</span>
           </p>
         </div>
         <button
           onclick="removeFromCart(${index})"
-          class="text-red-500">
+          class="text-red-500 text-xl hover:text-red-700">
           ✕
         </button>
       </div>
@@ -164,6 +228,22 @@ function renderCart() {
   }).join("");
 
   document.getElementById("cart-total").textContent = total + " грн";
+}
+
+function incrementCartItem(index) {
+  cart[index].quantity++;
+  saveCart();
+  renderCart();
+}
+
+function decrementCartItem(index) {
+  if (cart[index].quantity > 1) {
+    cart[index].quantity--;
+  } else {
+    cart.splice(index, 1);
+  }
+  saveCart();
+  renderCart();
 }
 
 function removeFromCart(index) {
