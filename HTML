@@ -1,0 +1,106 @@
+[09.06.2026 11:39] ㅤㅤㅤALㅤ: <!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frua — Ніжність, загорнута в шоколад</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#f8f5f2] text-gray-800 font-sans">
+
+    <!-- Навігація -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="text-4xl font-serif text-[#5c3314]">Frua</span>
+            </div>
+            <div class="hidden md:flex gap-8 text-lg font-medium">
+                <a href="#home" class="hover:text-[#8b5a2b] transition-colors">Головна</a>
+                <a href="#catalog" class="hover:text-[#8b5a2b] transition-colors">Каталог</a>
+                <a href="#about" class="hover:text-[#8b5a2b] transition-colors">Про нас</a>
+                <a href="#delivery" class="hover:text-[#8b5a2b] transition-colors">Доставка</a>
+            </div>
+            <button onclick="toggleCart()" class="relative text-2xl hover:text-[#8b5a2b] transition-colors">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero-bg min-h-screen bg-cover bg-center flex items-center text-white relative">
+        <div class="max-w-5xl mx-auto text-center px-6 z-10">
+            <h1 class="text-6xl md:text-7xl font-serif mb-6 leading-tight">Ніжність,<br>загорнута в шоколад</h1>
+            <p class="text-2xl md:text-3xl mb-10 max-w-2xl mx-auto">Преміальні фрукти в шоколаді ручної роботи</p>
+            <a href="#catalog" class="inline-block bg-white text-[#5c3314] hover:bg-amber-100 px-12 py-5 rounded-full text-xl font-semibold transition">Переглянути каталог</a>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section id="catalog" class="py-20 bg-[#f8f5f2]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
+                <h2 class="text-5xl font-serif">Каталог</h2>
+                <div class="flex gap-4">
+                    <select id="sort" onchange="sortProducts()" class="border border-gray-300 rounded-2xl px-5 py-3 focus:outline-none">
+                        <option value="popular">За популярністю</option>
+                        <option value="price-low">Ціна: від низької</option>
+                        <option value="price-high">Ціна: від високої</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="products" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Заповнюється JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Про нас -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-serif mb-8">Про Frua</h2>
+            <p class="text-lg leading-relaxed text-gray-600">
+                Ми створюємо ніжні десерти ручної роботи з найкращих фруктів та преміального бельгійського шоколаду. 
+                Кожне замовлення — це маленьке свято смаку та естетики.
+            </p>
+        </div>
+    </section>
+
+    <!-- Доставка -->
+    <section id="delivery" class="py-20 bg-[#f8f5f2]">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-5xl font-serif mb-12">Доставка та оплата</h2>
+            <p class="text-xl text-gray-600">Швидка доставка по всій Україні • Оплата при отриманні або онлайн</p>
+        </div>
+    </section>
+[09.06.2026 11:39] ㅤㅤㅤALㅤ: <!-- Кошик -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-auto">
+            <div class="p-8">
+                <div class="flex justify-between mb-8">
+                    <h3 class="text-3xl font-medium">Ваш кошик</h3>
+                    <button onclick="toggleCart()" class="text-3xl leading-none">×</button>
+                </div>
+                <div id="cart-items" class="space-y-6 min-h-[200px]"></div>
+                
+                <div class="border-t pt-6 mt-8">
+                    <div class="flex justify-between text-2xl font-semibold">
+                        <span>Разом:</span>
+                        <span id="cart-total">0 грн</span>
+                    </div>
+                </div>
+                
+                <button onclick="checkout()" 
+                        class="w-full mt-8 bg-[#8b5a2b] hover:bg-[#5c3314] text-white py-5 rounded-2xl text-xl font-medium transition">
+                    Оформити замовлення
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
