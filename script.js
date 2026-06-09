@@ -3,56 +3,56 @@ const products = [
     id: 1,
     name: "Полуниця в молочному шоколаді",
     price: 890,
-    img: "https://images.unsplash.com/photo-1549007953-2f2dc0b24019?w=800",
+    img: "https://i.pinimg.com/736x/a6/57/77/a657772cb1944457c8e0527193dd53ac.jpg",
     weight: "250г"
   },
   {
     id: 2,
     name: "Полуниця в білому шоколаді",
     price: 920,
-    img: "https://images.unsplash.com/photo-1511381939415-e44015466834?w=800",
+    img: "https://i.pinimg.com/736x/d7/da/4e/d7da4effc4646e8fb72e7634b587088b.jpg",
     weight: "250г"
   },
   {
     id: 3,
     name: "Полуниця в темному шоколаді",
     price: 950,
-    img: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?w=800",
+    img: "https://i.pinimg.com/1200x/9e/4e/ea/9e4eea09364808283b2c691dc76302b3.jpg",
     weight: "250г"
   },
   {
     id: 4,
     name: "Ягідний мікс Premium",
     price: 1250,
-    img: "https://images.unsplash.com/photo-1464306076886-da185f6a9d05?w=800",
+    img: "https://i.pinimg.com/1200x/74/b1/a7/74b1a7d77bfab2340a81e5958ce6fd4d.jpg",
     weight: "300г"
   },
   {
     id: 5,
     name: "Luxury Box",
     price: 1490,
-    img: "https://images.unsplash.com/photo-1481391032119-d89fee407e44?w=800",
+    img: "https://i.pinimg.com/736x/19/24/1b/19241ba8116ce9957a19b2f85ee85fd0.jpg",
     weight: "350г"
   },
   {
     id: 6,
-    name: "Романтичний набір",
+    name: "Цукерки лохина/малина в шоколаді",
     price: 1750,
-    img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+    img: "https://i.pinimg.com/736x/2c/bf/55/2cbf55f89557150133c6b8cb09a8ead6.jpg",
     weight: "400г"
   },
   {
     id: 7,
     name: "Подарункова коробка",
     price: 1190,
-    img: "https://images.unsplash.com/photo-1514996937319-344454492b37?w=800",
+    img: "https://i.pinimg.com/736x/27/2a/3c/272a3cd0645ebd3e38cf901efbd2387a.jpg",
     weight: "280г"
   },
   {
     id: 8,
     name: "Фруктовий букет",
     price: 1890,
-    img: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800",
+    img: "https://i.pinimg.com/736x/38/63/70/38637085818fa6394accb540f599d58e.jpg",
     weight: "450г"
   }
 ];
