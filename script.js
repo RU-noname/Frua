@@ -1,4 +1,4 @@
-[09.06.2026 11:41] ㅤㅤㅤALㅤ: let products = [
+let products = [
     {id:1, name:"Полуниця в молочному шоколаді", price:890, img:"https://picsum.photos/id/292/600/400", weight:"250г"},
     {id:2, name:"Полуниця в темному шоколаді", price:950, img:"https://picsum.photos/id/431/600/400", weight:"250г"},
     {id:3, name:"Ягідний мікс преміум", price:1250, img:"https://picsum.photos/id/870/600/400", weight:"300г"},
@@ -75,7 +75,7 @@ function renderCart() {
                 <img src="${item.img}" class="w-20 h-20 object-cover rounded-2xl">
                 <div class="flex-1">
                     <h4 class="font-medium">${item.name}</h4>
-[09.06.2026 11:41] ㅤㅤㅤALㅤ: <p class="text-sm text-gray-500">${item.weight} × ${item.quantity || 1}</p>
+<p class="text-sm text-gray-500">${item.weight} × ${item.quantity || 1}</p>
                     <p class="font-semibold mt-1">${itemTotal} грн</p>
                 </div>
                 <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700">✕</button>
