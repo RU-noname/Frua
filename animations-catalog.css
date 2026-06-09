@@ -1,0 +1,404 @@
+/* ===========================
+   CATALOG PAGE ANIMATIONS
+   Products, Filters, Cart, Search
+   =========================== */
+
+/* CATALOG SECTION */
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#catalog h2 {
+  animation: slideInFromTop 0.6s ease-out;
+}
+
+/* Search and Sort Input Animation */
+#search,
+#sort {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid #e0e0e0;
+}
+
+#search:focus,
+#sort:focus {
+  outline: none;
+  border-color: #8b5a2b;
+  box-shadow: 0 0 15px rgba(139, 90, 43, 0.2);
+  transform: scale(1.02);
+}
+
+/* PRODUCT CARD ANIMATIONS */
+
+@keyframes productCardIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.product-card {
+  animation: productCardIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation-fill-mode: both;
+  border-radius: 12px;
+  overflow: hidden;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+}
+
+/* Stagger product cards */
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.1s; }
+.product-card:nth-child(3) { animation-delay: 0.15s; }
+.product-card:nth-child(4) { animation-delay: 0.2s; }
+.product-card:nth-child(5) { animation-delay: 0.25s; }
+.product-card:nth-child(6) { animation-delay: 0.3s; }
+.product-card:nth-child(7) { animation-delay: 0.35s; }
+.product-card:nth-child(8) { animation-delay: 0.4s; }
+
+.product-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 40px rgba(139, 90, 43, 0.3);
+}
+
+/* Product Image Animation */
+.product-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: block;
+}
+
+.product-card:hover img {
+  transform: scale(1.15) rotate(2deg);
+}
+
+/* Product Info Animation */
+.product-card > div {
+  animation: slideInFromTop 0.5s ease-out 0.2s both;
+}
+
+.product-card h3 {
+  color: #5c3314;
+  transition: color 0.3s ease;
+}
+
+.product-card:hover h3 {
+  color: #8b5a2b;
+}
+
+.product-card p {
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.product-card:hover p {
+  color: #7a7a7a;
+}
+
+/* Price Animation */
+.product-card span.text-2xl {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover span.text-2xl {
+  transform: scale(1.1);
+  color: #d4a574;
+}
+
+/* Quantity Control Animation */
+.product-card .flex.items-center.border-2 {
+  animation: fadeInUp 0.5s ease-out 0.3s both;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.product-card .flex.items-center.border-2:focus-within {
+  box-shadow: 0 0 10px rgba(139, 90, 43, 0.2);
+  transform: scale(1.02);
+}
+
+/* Quantity Buttons */
+.product-card button.px-4.py-2.text-\[\#8b5a2b\] {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.product-card button.px-4.py-2.text-\[\#8b5a2b\]:active {
+  transform: scale(0.95);
+}
+
+.product-card button.px-4.py-2.text-\[\#8b5a2b\]:hover {
+  background-color: #f0e6d8;
+  font-weight: bold;
+}
+
+/* Add to Cart Button Animation */
+.product-card button.flex-1 {
+  animation: slideInFromTop 0.5s ease-out 0.35s both;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card button.flex-1::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.product-card button.flex-1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 90, 43, 0.3);
+  background-color: #6d4410;
+}
+
+.product-card button.flex-1:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.product-card button.flex-1:active {
+  transform: translateY(0);
+}
+
+/* CART MODAL ANIMATIONS */
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#cart-modal {
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+#cart-modal.hidden {
+  animation: fadeInOverlay 0.3s ease-out reverse;
+}
+
+#cart-modal > div {
+  animation: slideInFromRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#cart-modal.hidden > div {
+  animation: slideInFromRight 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) reverse;
+}
+
+/* Cart Items Animation */
+#cart-items > div {
+  animation: fadeInUp 0.4s ease-out;
+  animation-fill-mode: both;
+}
+
+#cart-items > div:nth-child(1) { animation-delay: 0.05s; }
+#cart-items > div:nth-child(2) { animation-delay: 0.1s; }
+#cart-items > div:nth-child(3) { animation-delay: 0.15s; }
+
+/* Cart Item Image */
+#cart-items img {
+  animation: fadeInUp 0.4s ease-out;
+  transition: transform 0.3s ease;
+}
+
+#cart-items img:hover {
+  transform: scale(1.05);
+}
+
+/* Cart Close Button */
+#cart-modal button {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#cart-modal button:hover {
+  transform: rotate(90deg) scale(1.2);
+  color: #d4a574;
+}
+
+/* Cart Total Animation */
+#cart-total {
+  animation: slideInFromRight 0.5s ease-out 0.2s both;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+#cart-total:hover {
+  transform: scale(1.1);
+  color: #8b5a2b;
+}
+
+/* Checkout Button Animation */
+#cart-modal button[onclick="checkout()"] {
+  animation: fadeInUp 0.5s ease-out 0.3s both;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+#cart-modal button[onclick="checkout()"]::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+#cart-modal button[onclick="checkout()"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(139, 90, 43, 0.3);
+}
+
+#cart-modal button[onclick="checkout()"]:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Remove Item Button Animation */
+.text-red-500.text-2xl {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  animation: fadeInUp 0.5s ease-out 0.4s both;
+}
+
+.text-red-500.text-2xl:hover {
+  color: #ff3333;
+  transform: scale(1.3) rotate(10deg);
+}
+
+/* Cart Count Badge Animation */
+#cart-count {
+  animation: scaleIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.3s ease;
+  display: flex !important;
+}
+
+#cart-count:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(220, 53, 69, 0.5);
+}
+
+/* Toast Notification Animation */
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutToBottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+.fixed.bottom-6.right-6 {
+  animation: slideInFromBottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Remove animation for toast */
+.fixed.bottom-6.right-6.removing {
+  animation: slideOutToBottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Product Loading Skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.product-loading {
+  background: linear-gradient(90deg, #f0e6d8 25%, #fff 50%, #f0e6d8 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
