@@ -72,7 +72,7 @@ function renderProducts(list = products) {
 
 const container = document.getElementById("products");
 
-container.innerHTML = list.map(product => 
+container.innerHTML = list.map(product => `
 
     <div class="product-card">
 
@@ -108,7 +108,7 @@ container.innerHTML = list.map(product =>
 
     </div>
 
-).join("");
+`).join("");
 
 }
 
@@ -141,7 +141,7 @@ toast.className =
     "fixed bottom-6 right-6 bg-[#8b5a2b] text-white px-6 py-4 rounded-2xl shadow-xl z-50";
 
 toast.textContent =
-    ${name} додано в кошик;
+    `${name} додано в кошик`;
 
 document.body.appendChild(toast);
 
@@ -187,7 +187,7 @@ container.innerHTML = cart.map((item,index) => {
 
     total += itemTotal;
 
-    return 
+    return `
 
         <div class="flex gap-4 border-b pb-4">
 
@@ -220,7 +220,7 @@ container.innerHTML = cart.map((item,index) => {
 
         </div>
 
-    ;
+    `;
 
 }).join("");
 document.getElementById("cart-total")
