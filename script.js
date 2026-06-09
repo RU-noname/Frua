@@ -297,35 +297,34 @@ renderProducts(sorted);
 }
 
 document.addEventListener(
-"DOMContentLoaded",
-() => {
+    "DOMContentLoaded",
+    () => {
 
-    renderProducts();
+        renderProducts();
 
-    updateCartCount();
+        updateCartCount();
 
-    const search =
-        document.getElementById("search");
+        const search =
+            document.getElementById("search");
 
-    search.addEventListener(
-        "input",
-        e => {
+        search.addEventListener(
+            "input",
+            e => {
 
-            const value =
-                e.target.value.toLowerCase();
+                const value =
+                    e.target.value.toLowerCase();
 
-            const filtered =
-                products.filter(product =>
-                    product.name
-                    .toLowerCase()
-                    .includes(value)
-                );
+                const filtered =
+                    products.filter(product =>
+                        product.name
+                        .toLowerCase()
+                        .includes(value)
+                    );
 
-            renderProducts(filtered);
+                renderProducts(filtered);
 
-        }
-    );
+            }
+        );
 
-}
-
+    }
 );
