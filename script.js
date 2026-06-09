@@ -78,22 +78,22 @@ function renderProducts(list = products) {
           </span>
         </div>
         <div class="flex gap-2 items-center">
-          <div class="flex items-center border border-[#8b5a2b] rounded-lg">
+          <div class="flex items-center border-2 border-[#8b5a2b] rounded-lg bg-white">
             <button
               onclick="decrementQty(${product.id})"
-              class="px-3 py-1 text-[#8b5a2b] font-bold hover:bg-[#f8f5f2]">
+              class="px-4 py-2 text-[#8b5a2b] font-bold text-lg hover:bg-[#f8f5f2] transition">
               −
             </button>
-            <span id="qty-${product.id}" class="px-3 py-1 min-w-[40px] text-center">1</span>
+            <span id="qty-${product.id}" class="px-4 py-2 min-w-[50px] text-center font-bold text-lg border-l border-r border-[#8b5a2b]">1</span>
             <button
               onclick="incrementQty(${product.id})"
-              class="px-3 py-1 text-[#8b5a2b] font-bold hover:bg-[#f8f5f2]">
+              class="px-4 py-2 text-[#8b5a2b] font-bold text-lg hover:bg-[#f8f5f2] transition">
               +
             </button>
           </div>
           <button
             onclick="addToCartWithQty(${product.id})"
-            class="flex-1 bg-[#8b5a2b] text-white px-4 py-2 rounded-xl hover:bg-[#6d4410]">
+            class="flex-1 bg-[#8b5a2b] text-white px-4 py-2 rounded-lg hover:bg-[#6d4410] transition font-semibold">
             В кошик
           </button>
         </div>
@@ -185,44 +185,58 @@ function renderCart() {
   const container = document.getElementById("cart-items");
   let total = 0;
 
+  if (cart.length === 0) {
+    container.innerHTML = '<p class="text-center text-gray-500 py-8">Кошик порожній</p>';
+    document.getElementById("cart-total").textContent = "0 грн";
+    return;
+  }
+
   container.innerHTML = cart.map((item, index) => {
     const itemTotal = item.price * item.quantity;
     total += itemTotal;
 
     return `
-      <div class="flex gap-4 border-b pb-4 mb-4">
-        <img
-          src="${item.img}"
-          class="w-20 h-20 object-cover rounded-xl">
-        <div class="flex-1">
-          <h4 class="font-semibold">
-            ${item.name}
-          </h4>
-          <p class="text-gray-600 mb-2">
-            ${item.weight}
-          </p>
-          <div class="flex gap-2 items-center mb-2">
+      <div class="border-b pb-6 mb-6 last:border-b-0">
+        <div class="flex gap-4 mb-4">
+          <img
+            src="${item.img}"
+            class="w-24 h-24 object-cover rounded-lg">
+          <div class="flex-1">
+            <h4 class="font-semibold text-lg mb-1">
+              ${item.name}
+            </h4>
+            <p class="text-gray-600 mb-3">
+              ${item.weight}
+            </p>
+            <p class="text-lg font-bold text-[#8b5a2b]">
+              ${item.price} грн × ${item.quantity} = <span class="text-red-600">${itemTotal} грн</span>
+            </p>
+          </div>
+          <button
+            onclick="removeFromCart(${index})"
+            class="text-red-500 text-2xl hover:text-red-700 hover:scale-125 transition">
+            ✕
+          </button>
+        </div>
+        
+        <div class="flex gap-3 items-center justify-between">
+          <span class="text-sm text-gray-600">Кількість:</span>
+          <div class="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
             <button
               onclick="decrementCartItem(${index})"
-              class="px-2 py-1 border border-[#8b5a2b] text-[#8b5a2b] rounded hover:bg-[#f8f5f2]">
+              class="w-10 h-10 flex items-center justify-center bg-[#8b5a2b] text-white font-bold rounded hover:bg-[#6d4410] transition">
               −
             </button>
-            <span class="px-3 text-center min-w-[30px]">${item.quantity}</span>
+            <span class="w-12 h-10 flex items-center justify-center font-bold text-lg bg-white rounded border border-[#8b5a2b]">
+              ${item.quantity}
+            </span>
             <button
               onclick="incrementCartItem(${index})"
-              class="px-2 py-1 border border-[#8b5a2b] text-[#8b5a2b] rounded hover:bg-[#f8f5f2]">
+              class="w-10 h-10 flex items-center justify-center bg-[#8b5a2b] text-white font-bold rounded hover:bg-[#6d4410] transition">
               +
             </button>
           </div>
-          <p>
-            ${item.price} грн × ${item.quantity} = <span class="font-bold">${itemTotal} грн</span>
-          </p>
         </div>
-        <button
-          onclick="removeFromCart(${index})"
-          class="text-red-500 text-xl hover:text-red-700">
-          ✕
-        </button>
       </div>
     `;
   }).join("");
