@@ -1,0 +1,338 @@
+/* ===========================
+   MAIN PAGE ANIMATIONS
+   Hero, Advantages, Reviews Sections
+   =========================== */
+
+/* HERO SECTION ANIMATIONS */
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(139, 90, 43, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 90, 43, 0.8);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Hero Background */
+.hero-bg {
+  background: linear-gradient(135deg, #8b5a2b 0%, #a67c52 50%, #d4a574 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-bg > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Text Animations */
+.hero-bg span {
+  display: inline-block;
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+.hero-bg h1 {
+  animation: slideInFromRight 1s ease-out 0.2s both;
+}
+
+.hero-bg p {
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-bg a {
+  display: inline-block;
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.hero-bg a:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.hero-bg a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ADVANTAGES SECTION */
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+#advantages h2 {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.adv-card {
+  animation: cardSlideUp 0.8s ease-out;
+  animation-fill-mode: both;
+  padding: 40px 30px;
+  border-radius: 12px;
+  background: #f8f5f2;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.adv-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.adv-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.adv-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.adv-card i {
+  animation: iconBounce 2s ease-in-out infinite;
+  color: #8b5a2b;
+  transition: color 0.3s ease;
+}
+
+.adv-card:hover {
+  transform: translateY(-15px) scale(1.05);
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  border-color: #8b5a2b;
+  box-shadow: 0 15px 40px rgba(139, 90, 43, 0.15);
+}
+
+.adv-card:hover i {
+  color: #d4a574;
+  animation: none;
+  transform: scale(1.2) rotate(10deg);
+}
+
+.adv-card h3 {
+  transition: color 0.3s ease;
+}
+
+.adv-card:hover h3 {
+  color: #8b5a2b;
+}
+
+/* REVIEWS SECTION */
+
+@keyframes reviewSlide {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#reviews h2 {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.review-card {
+  animation: reviewSlide 0.8s ease-out;
+  animation-fill-mode: both;
+  padding: 30px;
+  background: #f8f5f2;
+  border-radius: 12px;
+  border-left: 4px solid transparent;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.review-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.review-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.review-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.review-card:hover {
+  background: linear-gradient(135deg, #fff8f0, #ffe8d6);
+  border-left-color: #8b5a2b;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(139, 90, 43, 0.2);
+}
+
+.review-card:hover::before {
+  top: -25%;
+  right: -25%;
+}
+
+.review-card p {
+  position: relative;
+  z-index: 1;
+  font-style: italic;
+  color: #5c3314;
+  line-height: 1.6;
+}
+
+/* NAVBAR ANIMATION */
+
+nav {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
+nav a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #8b5a2b;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* FOOTER ANIMATION */
+
+footer {
+  animation: slideInFromLeft 0.6s ease-out 0.2s both;
+}
+
+/* Scroll Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.reveal.active {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
