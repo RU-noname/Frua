@@ -1,0 +1,15 @@
+.hero-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                      url('https://picsum.photos/id/1080/1920/1080');
+    background-size: cover;
+    background-position: center;
+}
+
+.product-card {
+    transition: all 0.4s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+}
